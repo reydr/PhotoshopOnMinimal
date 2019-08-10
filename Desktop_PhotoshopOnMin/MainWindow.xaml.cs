@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using Microsoft.Win32;
+using Desktop_PhotoshopOnMin.ImageLoadingSystem;
 
 namespace Desktop_PhotoshopOnMin
 {
@@ -21,6 +23,25 @@ namespace Desktop_PhotoshopOnMin
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void OpenFileDialog_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == DialogResult) return;
+
+            string filename = openFileDialog.FileName;
+
+            ImageLoader imageLoader = ImageLoader.GetInstance();
+            imageLoader.SetImage(filename);
+
+            ImgMain.Source = imageLoader.Photo;
+        }
+
+        private void FilterCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
