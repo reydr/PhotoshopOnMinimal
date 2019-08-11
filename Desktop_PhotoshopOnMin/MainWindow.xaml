@@ -31,7 +31,7 @@
         <Menu Grid.ColumnSpan="2">
             <MenuItem x:Name="MenuMain"
                 Header="File">
-                <MenuItem x:Name="OpenFileDialog" Click="OpenFileDialog_Click"
+                <MenuItem x:Name="MenuItemOpenFileDialog" Click="MenuItemOpenFileDialog_Click"
                           Header="Открыть изображение"/>
             </MenuItem>
         </Menu>
@@ -46,7 +46,7 @@
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#FF1A1A1A">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel />
+                    <WrapPanel/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>

@@ -1,24 +1,22 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 
-namespace Desktop_PhotoshopOnMin.ImageLoadingSystem
+namespace Desktop_PhotoshopOnMin.Date.ImageLoadingSystem
 {
     public class ImageLoader //: INotifyPropertyChanged
     {
         private static ImageLoader instance = null;
 
         private BitmapImage photo;
-
         public BitmapImage Photo
         {
             get => photo;
 
-            private set
+            set
             {
-                photo = value;
                 //OnPropertyChanged("Photo");
+                photo = value;
             }
         }
 
@@ -37,11 +35,21 @@ namespace Desktop_PhotoshopOnMin.ImageLoadingSystem
             return instance;
         }
 
-        public void SetImage(string filePath)
+        public void PullImage()
         {
-            BitmapImage bitmapImage = new BitmapImage(new Uri(filePath));
+            BitmapImage bitmapImage = new BitmapImage(new Uri(OpenFileDialog()));
 
             Photo = bitmapImage;
+        }
+
+        private string OpenFileDialog()
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.Cancel) return null;
+
+                return openFileDialog.FileName;
+            }
         }
 
         //private void Initialization()

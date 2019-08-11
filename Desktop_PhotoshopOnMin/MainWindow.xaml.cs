@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using MahApps.Metro.Controls;
-using Microsoft.Win32;
-using Desktop_PhotoshopOnMin.ImageLoadingSystem;
+
+using Desktop_PhotoshopOnMin.Date.ImageLoadingSystem;
 
 namespace Desktop_PhotoshopOnMin
 {
@@ -25,16 +14,10 @@ namespace Desktop_PhotoshopOnMin
             InitializeComponent();
         }
 
-        private void OpenFileDialog_Click(object sender, RoutedEventArgs e)
+        private void MenuItemOpenFileDialog_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            if (openFileDialog.ShowDialog() == DialogResult) return;
-
-            string filename = openFileDialog.FileName;
-
             ImageLoader imageLoader = ImageLoader.GetInstance();
-            imageLoader.SetImage(filename);
+            imageLoader.PullImage();
 
             ImgMain.Source = imageLoader.Photo;
         }
