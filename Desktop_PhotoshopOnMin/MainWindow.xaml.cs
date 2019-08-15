@@ -3,7 +3,9 @@ using System.Windows.Controls;
 
 using MahApps.Metro.Controls;
 
-using Desktop_PhotoshopOnMin.Date.ImageLoadingSystem;
+using Desktop_PhotoshopOnMin.Data.ImageLoadingSystem;
+using Desktop_PhotoshopOnMin.Data.SystemOfTrainingImages;
+using Desktop_PhotoshopOnMin.Filters.FilterCollection;
 
 namespace Desktop_PhotoshopOnMin
 {
@@ -16,15 +18,19 @@ namespace Desktop_PhotoshopOnMin
 
         private void MenuItemOpenFileDialog_Click(object sender, RoutedEventArgs e)
         {
-            ImageLoader imageLoader = ImageLoader.GetInstance();
-            imageLoader.PullImage();
+            Picture picture = Picture.GetInstance();
 
-            ImgMain.Source = imageLoader.Photo;
+            picture = Converter.BitmapToPhoto(ImageLoader.PullImage());
+
+            picture.positionsOfPixels = HalftoneFilter.GetInstance().
+                Filtration(picture.positionsOfPixels, picture.width, picture.height);
+
+            ImgMain.Source = Converter.BitmapToBitmapImage(Converter.PhotoToBitmap(picture));
         }
 
         private void FilterCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
     }
 }
