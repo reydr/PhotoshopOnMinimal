@@ -6,21 +6,54 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:Desktop_PhotoshopOnMin"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="#FF1A1A1A">
+
+    <Window.Resources>
+        <DataTemplate x:Key="ListTemplate">
+            <StackPanel Margin="5">
+                <Image Width="120" Height="80" Source="{Binding .}" IsEnabled="False" />
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
-        
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="792"/>
+            <ColumnDefinition Width="135"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
 
-        <Menu/>
+        <Menu Grid.ColumnSpan="2" Background="#FF2D2D30">
+            <MenuItem x:Name="MenuMain"
+                Header="File" Background="{x:Null}" Foreground="White" FontFamily="Arial" FontSize="12">
+                <MenuItem x:Name="MenuItem_OpenFileDialog" Click="MenuItem_OpenFileDialog_Click"
+                          Header="Открыть изображение"/>
+            </MenuItem>
+        </Menu>
 
-        <Frame Grid.Row="1" Source="Pages/PageHome.xaml" NavigationUIVisibility="Hidden"/>
-        
+        <Image x:Name="ImgMain"
+               Grid.Row="1" Grid.Column="1"/>
+
+        <ListBox x:Name="ListBox_FilterCollection"
+                 Grid.Row="1" Grid.Column="0"
+                 ItemTemplate="{StaticResource ListTemplate}" 
+                 SelectionChanged="ListBox_FilterCollection_SelectionChanged"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#FF252526">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+
+        <Rectangle Fill="#FF2D2D30"
+                   Grid.ColumnSpan="2"
+                   Grid.Row="2"/>
+
     </Grid>
 </Controls:MetroWindow>
