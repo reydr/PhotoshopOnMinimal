@@ -1,9 +1,8 @@
 ﻿using Desktop_PhotoshopOnMin.Exceptions;
-using System.Windows;
 
-namespace Desktop_PhotoshopOnMin.Data.SystemOfTrainingImages
+namespace Desktop_PhotoshopOnMin.Data
 {
-    public struct Pixel 
+    public struct Pixel : System.ICloneable
     {
         private double r;
         public double R
@@ -12,9 +11,9 @@ namespace Desktop_PhotoshopOnMin.Data.SystemOfTrainingImages
 
             set
             {
-                if(value > 255 || value < 0)
+                if (value > 255 || value < 0)
                 {
-                    throw new ArgumentRGBException("Не верное зачение для каналов RGB", value);
+                    throw new ValueRGBException("Не верное зачение для каналов RGB", value);
                 }
                 else
                 {
@@ -32,7 +31,7 @@ namespace Desktop_PhotoshopOnMin.Data.SystemOfTrainingImages
             {
                 if (value > 255 || value < 0)
                 {
-                    throw new ArgumentRGBException("Не верное зачение для каналов RGB", value);
+                    throw new ValueRGBException("Не верное зачение для каналов RGB", value);
                 }
                 else
                 {
@@ -50,13 +49,18 @@ namespace Desktop_PhotoshopOnMin.Data.SystemOfTrainingImages
             {
                 if (value > 255 || value < 0)
                 {
-                    throw new ArgumentRGBException("Не верное зачение для каналов RGB", value);
+                    throw new ValueRGBException("Не верное зачение для каналов RGB", value);
                 }
                 else
                 {
                     b = value;
                 }
             }
+        }
+
+        public object Clone()
+        {
+            return new Pixel { R = this.R, G = this.G, B = this.B };
         }
     }
 }

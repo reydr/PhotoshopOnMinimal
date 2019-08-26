@@ -4,11 +4,11 @@
 
 namespace Desktop_PhotoshopOnMin.Exceptions
 {
-    public class ArgumentRGBException : ArgumentException
+    public class ValueRGBException : ArgumentException
     {
         public double Value { get; }
 
-        public ArgumentRGBException(string message, double value) 
+        public ValueRGBException(string message, double value) 
             : base(message)
         {
             Value = value;

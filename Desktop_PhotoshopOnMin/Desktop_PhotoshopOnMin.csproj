@@ -74,12 +74,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\ImageLoadingSystem\ImageLoader.cs" />
-    <Compile Include="Data\SystemOfTrainingImages\Converter.cs" />
-    <Compile Include="Data\SystemOfTrainingImages\Picture.cs" />
-    <Compile Include="Data\SystemOfTrainingImages\Pixel.cs" />
+    <Compile Include="Data\Converter.cs" />
+    <Compile Include="Data\Picture.cs" />
+    <Compile Include="Filters\OriginalPicture.cs" />
+    <Compile Include="ImageLoader.cs" />
+    <Compile Include="Data\Pixel.cs" />
     <Compile Include="Exceptions\ValueRGBException.cs" />
-    <Compile Include="Filters\FilterCollection\HalftoneFilter.cs" />
+    <Compile Include="Filters\HalftoneFilter.cs" />
+    <Compile Include="Filters\FilterExplorer.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -113,6 +115,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Config\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

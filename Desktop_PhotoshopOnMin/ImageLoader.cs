@@ -1,10 +1,7 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
+﻿using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Media.Imaging;
 
-namespace Desktop_PhotoshopOnMin.Data.ImageLoadingSystem
+namespace Desktop_PhotoshopOnMin
 {
     public static class ImageLoader
     {

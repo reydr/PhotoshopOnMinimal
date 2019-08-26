@@ -6,18 +6,18 @@ using System.Windows.Media.Imaging;
 
 
 
-namespace Desktop_PhotoshopOnMin.Data.SystemOfTrainingImages
+namespace Desktop_PhotoshopOnMin.Data
 {
     public static class Converter
     {
-        public static Picture BitmapToPhoto(Bitmap bmp)
+        public static Picture BitmapToPicture(Bitmap bmp)
         {
-            Picture picture = Picture.GetInstance();
+            Picture picture = new Picture();
 
-            picture.width = Convert.ToUInt32(bmp.Width);
-            picture.height = Convert.ToUInt32(bmp.Height);
+            picture.Width = Convert.ToUInt32(bmp.Width);
+            picture.Height = Convert.ToUInt32(bmp.Height);
 
-            picture.positionsOfPixels = new Pixel[bmp.Width, bmp.Height];
+            picture.Pixels = new Pixel[bmp.Width, bmp.Height];
 
             for (int x = 0; x < bmp.Width; x++)
             {
@@ -25,40 +25,40 @@ namespace Desktop_PhotoshopOnMin.Data.SystemOfTrainingImages
                 {
                     var pixel = bmp.GetPixel(x, y);
 
-                    picture.positionsOfPixels[x, y].R = pixel.R;
-                    picture.positionsOfPixels[x, y].G = pixel.G;
-                    picture.positionsOfPixels[x, y].B = pixel.B;
+                    picture.Pixels[x, y].R = pixel.R;
+                    picture.Pixels[x, y].G = pixel.G;
+                    picture.Pixels[x, y].B = pixel.B;
                 }
             }
 
             return picture;
         }
 
-        public static Bitmap PhotoToBitmap(Picture picture)
+        public static Bitmap PictureToBitmap(Picture picture)
         {
-            Bitmap bmp = new Bitmap(Convert.ToInt32(picture.width), Convert.ToInt32(picture.height));
+            Bitmap bmp = new Bitmap(Convert.ToInt32(picture.Width), Convert.ToInt32(picture.Height));
 
             for (uint x = 0; x < bmp.Width; x++)
             {
                 for (uint y = 0; y < bmp.Height; y++)
                 {
                     bmp.SetPixel(Convert.ToInt32(x), Convert.ToInt32(y), Color.FromArgb(
-                        Convert.ToInt32(picture.positionsOfPixels[x, y].R),
-                        Convert.ToInt32(picture.positionsOfPixels[x, y].G),
-                        Convert.ToInt32(picture.positionsOfPixels[x, y].B)));
+                        Convert.ToInt32(picture.Pixels[x, y].R),
+                        Convert.ToInt32(picture.Pixels[x, y].G),
+                        Convert.ToInt32(picture.Pixels[x, y].B)));
                 }
             }
 
             return bmp;
         }
 
-        public static Bitmap BitmapImageToBitmap(BitmapImage bitmapImage)
+        public static Bitmap BitmapImageToBitmap(BitmapImage bmpImage)
         {
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 BitmapEncoder bmpEncoder = new BmpBitmapEncoder();
 
-                bmpEncoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                bmpEncoder.Frames.Add(BitmapFrame.Create(bmpImage));
 
                 bmpEncoder.Save(memoryStream);
 
@@ -67,11 +67,11 @@ namespace Desktop_PhotoshopOnMin.Data.SystemOfTrainingImages
             }
         }
 
-        public static BitmapImage BitmapToBitmapImage(Bitmap bitmap)
+        public static BitmapImage BitmapToBitmapImage(Bitmap bmp)
         {
             using (var memory = new MemoryStream())
             {
-                bitmap.Save(memory, ImageFormat.Png);
+                bmp.Save(memory, ImageFormat.Png);
                 memory.Position = 0;
 
                 BitmapImage bitmapImage = new BitmapImage();
