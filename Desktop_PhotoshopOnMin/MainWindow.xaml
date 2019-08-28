@@ -12,6 +12,7 @@
         <DataTemplate x:Key="ListTemplate">
             <StackPanel Margin="5">
                 <Image Width="120" Height="80" Source="{Binding .}" IsEnabled="False" />
+                <TextBlock Text="{Binding Path= .}"/>
             </StackPanel>
         </DataTemplate>
     </Window.Resources>

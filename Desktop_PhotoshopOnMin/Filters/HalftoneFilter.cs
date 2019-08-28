@@ -1,7 +1,6 @@
-﻿using System.Drawing;
-using System.Windows.Media.Imaging;
+﻿using Desktop_PhotoshopOnMin.Data;
 
-using Desktop_PhotoshopOnMin.Data;
+
 
 namespace Desktop_PhotoshopOnMin.Filters
 {
